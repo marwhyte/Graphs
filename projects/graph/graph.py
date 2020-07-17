@@ -89,50 +89,50 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        # if starting_vertex == destination_vertex:
-        #     return [starting_vertex]
+        if starting_vertex == destination_vertex:
+            return [starting_vertex]
 
-        # q = Queue()
-        # q.enqueue([starting_vertex])
-
-        # visited = set()
-
-        # while q.size() > 0:
-        #     path = q.dequeue()
-        #     node = path[-1]
-
-        #     if node not in visited:
-
-        #         for next_node in self.get_neighbors(node):
-
-        #             if next_node not in visited:
-        #                 new_path = list(path)
-        #                 new_path.append(next_node)
-        #                 q.enqueue(new_path)
-
-        #                 if next_node == destination_vertex:
-        #                     return new_path
         q = Queue()
+        q.enqueue([starting_vertex])
+
         visited = set()
 
-        path = [starting_vertex]
-        q.enqueue(path)
-
         while q.size() > 0:
-            current_path = q.dequeue()
-            current_node = current_path[-1]
+            path = q.dequeue()
+            node = path[-1]
 
-            if current_node == destination_vertex:
-                return current_path
+            if node not in visited:
 
-            if current_node not in visited:
-                visited.add(current_node)
-                neighbors = self.get_neighbors(current_node)
+                for next_node in self.get_neighbors(node):
 
-                for neighbor in neighbors:
-                    path_copy = current_path[:]
-                    path_copy.append(neighbor)
-                    q.enqueue(path_copy)
+                    if next_node not in visited:
+                        new_path = list(path)
+                        new_path.append(next_node)
+                        q.enqueue(new_path)
+
+                        if next_node == destination_vertex:
+                            return new_path
+        # q = Queue()
+        # visited = set()
+
+        # path = [starting_vertex]
+        # q.enqueue(path)
+
+        # while q.size() > 0:
+        #     current_path = q.dequeue()
+        #     current_node = current_path[-1]
+
+        #     if current_node == destination_vertex:
+        #         return current_path
+
+        #     if current_node not in visited:
+        #         visited.add(current_node)
+        #         neighbors = self.get_neighbors(current_node)
+
+        #         for neighbor in neighbors:
+        #             path_copy = current_path[:]
+        #             path_copy.append(neighbor)
+        #             q.enqueue(path_copy)
 
     def dfs(self, starting_vertex, destination_vertex):
         """

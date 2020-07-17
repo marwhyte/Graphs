@@ -14,7 +14,6 @@ class Graph:
 
 
 def earliest_ancestor(ancestors, starting_node):
-    # Build the graph
     graph = Graph()
     # child should have edge to parent - child points to parent
     for pair in ancestors:
